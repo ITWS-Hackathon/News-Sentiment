@@ -1,18 +1,18 @@
-// const express = require('express');
-// const router = express.Router(); 
+module.exports = function(input){
+    const keyword_extractor = require("keyword-extractor");
+    const sentence = input
 
-// module.exports = router;
+    //  Extract the keywords
+    const extraction_result =
+    keyword_extractor.extract(sentence,{
+        language:"english",
+        remove_digits: true,
+        return_changed_case:true,
+        remove_duplicates: false
 
-// Test input
-let sentence = "Some interesting information about Ukraine and Russia"
-
-//Usage: rake.generate(text-input, optional-stopwords)
-// const myStopwords = ['for', 'the', 'a', 'stands', 'test', 'man', 'woman'];
-// const opts = {stopwords: myStopwords};
-
-const rake = require('node-rake')
-const keywords = rake.generate(sentence)
-console.log(keywords)
+    });
+    return extraction_result;
+}
 
 
 
