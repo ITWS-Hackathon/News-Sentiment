@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "article-parser": "^6.0.0-rc10"
+    "article-parser": "^6.0.0-rc10",
+    "vader-sentiment": "^1.1.3"
   }
 }
