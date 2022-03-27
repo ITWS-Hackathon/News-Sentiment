@@ -1,23 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import KeywordInput from './components/keyword-analysis';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import VisualizationOptions from './components/keyword-analysis/vis-options';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="test">
+      <VisualizationOptions></VisualizationOptions>
+      <KeywordInput></KeywordInput>
+
     </div>
   );
 }
