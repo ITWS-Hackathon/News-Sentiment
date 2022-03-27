@@ -8,7 +8,9 @@ const options = {
 
 function WC() {
     return(
-        <ReactWordcloud words={words} options={options} />
+        <div style={{width: 320, height: 240}}>
+            <ReactWordcloud words={words} options={options} />
+        </div>
     );
 }
 
