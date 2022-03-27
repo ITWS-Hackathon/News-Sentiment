@@ -23,10 +23,9 @@ app.use(function (req, res, next) {
 console.log(__dirname);
 
 app.get("/keywords/:keyword", (req, res) => {
-  console.log(req.params.keyword);
-  // let keywords = req.body;
+  console.log("Keyword", req.params.keyword, "recieved.");
+
   generate(req.params.keyword).then((data) => {
-    console.log(data);
     res.send(data);
   });
 });
