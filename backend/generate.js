@@ -78,7 +78,7 @@ module.exports = async function(input) {
             params: inputs,
             headers: {
                 'X-RapidAPI-Host': 'contextualwebsearch-websearch-v1.p.rapidapi.com',
-                'X-RapidAPI-Key': apis["api1"]
+                'X-RapidAPI-Key': apis["api3"]
             }
         };
         let res = await axios.request(options);
