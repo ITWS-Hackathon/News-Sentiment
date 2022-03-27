@@ -48,6 +48,15 @@ async function process(string, all_articles) {
  }
 
 module.exports = async function(input) {
+    /* Create your own api.json file with the api keys:
+        {
+            "api1": "key",
+            "api2": "key",
+            "api3": "key"
+        }
+    */
+    
+    const apis = require("./api.json");
     var all_articles = [];
     var string = "";
     // API call
@@ -69,7 +78,7 @@ module.exports = async function(input) {
             params: inputs,
             headers: {
                 'X-RapidAPI-Host': 'contextualwebsearch-websearch-v1.p.rapidapi.com',
-                'X-RapidAPI-Key': "53a08ade50msh528381ec2056ee3p1ce5a0jsn3a56ec7bf691"
+                'X-RapidAPI-Key': apis["api1"]
             }
         };
         let res = await axios.request(options);
