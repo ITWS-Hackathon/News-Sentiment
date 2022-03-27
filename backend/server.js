@@ -1,25 +1,36 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const port = 3000;
-const axios = require('axios');
-const path = require('path');
+const port = 8000;
+const axios = require("axios");
+const path = require("path");
 const generate = require("./generate.js");
+const bodyParser = require("body-parser");
 
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.use(bodyParser.json());
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "DELETE,PUT,POST,PATCH,GET");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 console.log(__dirname);
 
-app.listen(port, () => {
-  console.log('Listening on *:3000');
+app.get("/keywords/:keyword", (req, res) => {
+  console.log(req.params.keyword);
+  // let keywords = req.body;
+  generate(req.params.keyword).then((data) => {
+    console.log(data);
+    res.send(data);
+  });
 });
 
-app.get("/keywords/:keys", (req, res) => {
-  
-
-  let keywords = req.body.keywords;
-
-  
-
-  res.send(generate(keywords[0]));
+app.listen(port, () => {
+  console.log("Listening on *:8000");
 });

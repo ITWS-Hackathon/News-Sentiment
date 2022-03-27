@@ -19,15 +19,15 @@ const StyledNav = styled(Nav)`
 `;
 
 function Navbar() {
-  const keys = ["word", "test", "something"];
+  const keys = ["ukraine"];
+
   let search = (e) => {
-    axios
-      .post("http://localhost:3000/keywords", {
-        keywords: keys,
-      })
-      .then((res) => {
-        console.log(res);
-      });
+    e.preventDefault();
+    axios.get("http://localhost:8000/keywords/ukraine").then((res) => {
+      console.log("Other stff");
+      console.log(res);
+      console.log(res.data);
+    });
   };
 
   return (
