@@ -27,7 +27,12 @@ var options = {
 var full_map = new Map();
 
 // API call
+let maxPages = 4;
 axios.request(options).then((res) => {
+    let numPagesToGet = Math.floor((res.data.totalCount)/50);
+    if (numPagesToGet > 4) numPagesToGet = 4;
+    
+
     console.log(res);
 
     let allSentiment = [];
