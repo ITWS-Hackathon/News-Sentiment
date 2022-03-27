@@ -1,0 +1,55 @@
+{
+    "keywords": [
+        {
+            "text": "foo",
+            "value": 2
+        },
+        {
+            "text": "otherword",
+            "value": 10
+        }
+    ],
+    "sentiment": {
+        "average": 0.12,
+        "top": {
+            "1": {
+                "title": "A cool title",
+                "url": "https://acoollink.com",
+                "description": "Lorum ipsum I'm like a sentence or two",
+                "sentiment": 0.99
+            },
+            "2": {
+                "title": "A cool title",
+                "url": "https://acoollink.com",
+                "description": "Lorum ipsum I'm like a sentence or two",
+                "sentiment": 0.91            
+            },
+            "3": {
+                "title": "A cool title",
+                "url": "https://acoollink.com",
+                "description": "Lorum ipsum I'm like a sentence or two",
+                "sentiment": 0.86            
+            }
+        },
+        "bottom": {
+            "1": {
+                "title": "A cool title",
+                "url": "https://acoollink.com",
+                "description": "Lorum ipsum I'm like a sentence or two",
+                "sentiment": -0.99            
+            },
+            "2": {
+                "title": "A cool title",
+                "url": "https://acoollink.com",
+                "description": "Lorum ipsum I'm like a sentence or two",
+                "sentiment": -0.90
+            },
+            "3": {
+                "title": "A cool title",
+                "url": "https://acoollink.com",
+                "description": "Lorum ipsum I'm like a sentence or two",
+                "sentiment": -0.89        
+            }
+        }
+    }
+}

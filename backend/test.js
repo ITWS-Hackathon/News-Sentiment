@@ -32,7 +32,14 @@ var options = {
 var all_articles = [];
 var string = "";
 // API call
+let maxPages = 4;
 axios.request(options).then((res) => {
+    let numPagesToGet = Math.floor((res.data.totalCount) / 50);
+    if (numPagesToGet > 4) numPagesToGet = 4;
+
+
+    console.log(res);
+
     let data = res.data.value;
     data.forEach((article) => {
         let content = article["body"].replace(/(\r\n|\n|\r|\t)/gm, "").replace(/\s\s+/g, ' ').replace(/['".,-]+/g, '').replace(/[)/(]+/g, '').replace(/[\[\]']+/g, '');
