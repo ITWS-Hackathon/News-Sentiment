@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const axios = require('axios');
 const path = require('path');
+const generate = require("./generate.js");
 
 
 app.use(express.static(path.join(__dirname, '../frontend/build')));
@@ -16,17 +17,9 @@ app.listen(port, () => {
 app.get("/keywords/:keys", (req, res) => {
   
 
-  // let keywords = String(req.params.keys).replace("-", " ");
+  let keywords = req.body.keywords;
 
-  inputs = {
-    q: keywords,
-    pageNumber: '1',
-    pageSize: '50',
-    autoCorrect: 'true',
-    safeSearch: 'false',
-    fromPublishedDate: '2022-03-01',
-    toPublishedDate: 'null'
-  };
+  
 
-  res.send("All the JSON data");
+  res.send(generate(keywords[0]));
 });
