@@ -1,4 +1,5 @@
-const vader = require('vader-sentiment');
-const input = 'This movie was good.';
-const intensity = vader.SentimentIntensityAnalyzer.polarity_scores(input);
-console.log(intensity);
+module.exports = (theTexts) => {
+    const vader = require("vader-sentiment");
+    const intensity = vader.SentimentIntensityAnalyzer.polarity_scores(theTexts);
+    return intensity.compound;
+}
