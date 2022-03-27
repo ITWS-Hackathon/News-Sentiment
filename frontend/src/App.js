@@ -1,15 +1,13 @@
 import "./App.css";
 import Navbar from "./components/navbar";
-import KeywordInput from "./components/keyword-analysis";
-import VisualizationOptions from "./components/keyword-analysis/vis-options";
+import VisualizationOptions from "./components/keyword-analysis";
 
 function App() {
   return (
     <>
-      <Navbar />;
+      <Navbar />
       <div className="test">
         <VisualizationOptions></VisualizationOptions>
-        <KeywordInput></KeywordInput>
       </div>
     </>
   );
