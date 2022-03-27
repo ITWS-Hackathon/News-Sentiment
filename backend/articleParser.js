@@ -4,7 +4,7 @@
 
 // urls is a list of urls
 module.exports = (urls) => {
-  const { extract } = require('article-parser/dist/cjs/article-parser.js');
+  // const { extract } = require('article-parser/dist/cjs/article-parser.js');
 
   // const urls = ["https://thefrisky.com/elon-musk-and-grimes-changed-their-babys-name/", 
   // "https://www.iol.co.za/news/science/cyril-ramaphosa-applauds-elon-musk-on-historic-space-flight-48799098",
@@ -13,7 +13,7 @@ module.exports = (urls) => {
   //   "https://www.nydailynews.com/news/national/ny-elon-musk-770-million-stock-20200529-bej7g54cqncydcikx6hwghz5gy-story.html#ed=rss_www.nydailynews.com/arcio/rss/category/news/", 
   //   "https://www.upi.com/Entertainment_News/2020/05/25/Grimes-Elon-Musk-tweak-their-infants-unusual-name/7081590427701/"]
 
-  urls.forEach((url) => {
+  // urls.forEach((url) => {
     extract(url).then((article) => {
       var regex = /(<([^>]+)>)/ig
         , body = "<p>test</p>"
@@ -24,5 +24,5 @@ module.exports = (urls) => {
     }).catch((err) => {
       console.trace(err);
     });
-  });
+  // });
 }

@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "article-parser": "^6.0.0-rc10",
+    "axios": "^0.26.1",
+    "keyword-extractor": "^0.0.21",
     "vader-sentiment": "^1.1.3"
   }
 }

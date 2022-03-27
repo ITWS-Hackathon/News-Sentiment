@@ -1,10 +1,8 @@
 module.exports = function(input){
     const keyword_extractor = require("keyword-extractor");
-    const sentence = input
-
     //  Extract the keywords
     const extraction_result =
-    keyword_extractor.extract(sentence,{
+        keyword_extractor.extract(input,{
         language:"english",
         remove_digits: true,
         return_changed_case:true,
