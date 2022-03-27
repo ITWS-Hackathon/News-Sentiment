@@ -24,20 +24,29 @@ var options = {
     }
 };
 
+var full_map = new Map();
+
 // API call
 axios.request(options).then((res) => {
     console.log(res);
 
     let allSentiment = [];
-    let allKeywords = [];
     res.data.value.forEach((article) => {
-        let content = article["body"];
+        let content = article["body"].replace(/(\r\n|\n|\r|\t)/gm, "").replace(/\s\s+/g, ' ').replace("[^a-zA-Z0-9 -]", "");
+        console.log(content);
         allSentiment.push(sentimentAnalyzer(content));
-        allKeywords.push(extractKeywords(content));
+        let article_map = new Map()
+        article_map.set("url", article["url"]);
+        article_map.set("description", article["description"]);
+        article_map.set("sentiment", allSentiment);
+        article_map.set("keywords", extractKeywords(content));
+        full_map.set(article["title"], article_map);
+
     });
-    // console.log(allSentiment);
-    // console.log("---------------------------------------------------");
-    // console.log(allKeywords);
-}).catch(function (error) {
+    console.log(full_map)
+        // console.log(allSentiment);
+        // console.log("---------------------------------------------------");
+        // console.log(allKeywords);
+}).catch(function(error) {
     console.error(error);
 });
