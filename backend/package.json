@@ -10,6 +10,12 @@
   "license": "ISC",
   "dependencies": {
     "article-parser": "^6.0.0-rc10",
+    "axios": "^0.26.1",
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
+    "fs": "^0.0.1-security",
+    "keyword-extractor": "^0.0.21",
+    "node-rake": "^1.0.1",
     "vader-sentiment": "^1.1.3"
   }
 }
