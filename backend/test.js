@@ -1,7 +1,12 @@
 const axios = require("axios").default;
 const sentimentAnalyzer = require("./sentiment.js");
-const articleParser = require("./articleParser.js");
 const extractKeywords = require("./keywordExtract.js");
+
+function compare(a, b) {
+    if (a["sentiment"] > b["sentiment"]) return 1;
+    if (a["sentiment"] < b["sentiment"]) return -1;
+    return 0;
+}
 
 inputs = {
     q: 'ukraine',
@@ -20,33 +25,61 @@ var options = {
     params: inputs,
     headers: {
         'X-RapidAPI-Host': 'contextualwebsearch-websearch-v1.p.rapidapi.com',
-        'X-RapidAPI-Key': "9a6e1bdfdamsh98ab579cab94727p16b209jsna63f7e602a4d"
+        'X-RapidAPI-Key': "53a08ade50msh528381ec2056ee3p1ce5a0jsn3a56ec7bf691"
     }
 };
 
-var full_map = new Map();
-
+var all_articles = [];
+var string = "";
 // API call
 axios.request(options).then((res) => {
-    console.log(res);
-
-    let allSentiment = [];
-    res.data.value.forEach((article) => {
-        let content = article["body"].replace(/(\r\n|\n|\r|\t)/gm, "").replace(/\s\s+/g, ' ').replace("[^a-zA-Z0-9 -]", "");
-        console.log(content);
-        allSentiment.push(sentimentAnalyzer(content));
-        let article_map = new Map()
-        article_map.set("url", article["url"]);
-        article_map.set("description", article["description"]);
-        article_map.set("sentiment", allSentiment);
-        article_map.set("keywords", extractKeywords(content));
-        full_map.set(article["title"], article_map);
-
+    let data = res.data.value;
+    data.forEach((article) => {
+        let content = article["body"].replace(/(\r\n|\n|\r|\t)/gm, "").replace(/\s\s+/g, ' ').replace(/['".,-]+/g, '').replace(/[)/(]+/g, '').replace(/[\[\]']+/g, '');
+        string += content + " ";
+        let article_ = {};
+        article_["title"] = article["title"];
+        article_["url"] = article["url"];
+        article_["description"] = article["description"];
+        article_["sentiment"] = sentimentAnalyzer(content);
+        all_articles.push(article_);
     });
-    console.log(full_map)
-        // console.log(allSentiment);
-        // console.log("---------------------------------------------------");
-        // console.log(allKeywords);
+    let keywords = extractKeywords(string.replace(/\s\s+/g, ' '));
+    let new_keywords = [];
+    Object.keys(keywords).forEach((word) => {
+        new_keywords.push({ "text": word, "value": keywords[word] })
+    });
+
+    all_articles.sort(compare);
+
+    var bottom = {};
+    bottom["1"] = all_articles[0];
+    bottom["2"] = all_articles[1];
+    bottom["3"] = all_articles[2];
+
+    var length = all_articles.length;
+    var top = {};
+    top["1"] = all_articles[length - 2];
+    top["2"] = all_articles[length - 1];
+    top["3"] = all_articles[length - 3];
+
+    var average = 0;
+    all_articles.forEach((article) => {
+        average += article["sentiment"];
+    });
+    average /= length;
+
+    var sentiment = {};
+    sentiment["average"] = average;
+    sentiment["top"] = top;
+    sentiment["bottom"] = bottom;
+
+    var output = {};
+    output["keywords"] = new_keywords;
+    output["sentiment"] = sentiment;
+
+    console.log(output);
+
 }).catch(function(error) {
     console.error(error);
 });
